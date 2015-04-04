@@ -5,7 +5,12 @@ import logging
 import os
 
 LOG_FILE = 'hook.log'
+BOTTLE_LOG_FILE = 'bottle.log'
+BOTTLE_PID = 'bottle.pid'
+
 LOG_PATH = os.path.dirname(os.path.realpath(__file__)) + '/' + LOG_FILE
+BOTTLE_PATH = os.path.dirname(os.path.realpath(__file__)) + '/' + BOTTLE_LOG_FILE
+BOTTLE_PID_PATH = os.path.dirname(os.path.realpath(__file__)) + '/' + BOTTLE_PID
 
 @get('/pull/<path:path>')
 def pull(path):
@@ -25,4 +30,4 @@ def pull(path):
 
 # run(host='localhost', port=8989)
 if __name__ == "__main__":
-  daemon_run(host='localhost', port=8989)
+  daemon_run(host='localhost', port=8989, logfile=BOTTLE_PATH, pidfile=BOTTLE_PID_PATH)
